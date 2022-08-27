@@ -4,6 +4,7 @@ import './App.css';
 import Computer from './components/Computer';
 import Human from './components/Human';
 import q from "qjuul"
+import { AnimationControls, motion, TargetAndTransition, VariantLabels } from "framer-motion";
 
 
 
@@ -12,6 +13,7 @@ function App() {
 
   //Options 
   const options = ["rock", "paper", "scissors"];
+  const [isActive, setIsActive] = React.useState(false);
 
   //useStates
   const [outCome, setOutCome] = useState("")
@@ -19,6 +21,7 @@ function App() {
   const [humanChoice, setHumanChoice] = useState("")
   const [HumanPoints, setHumanPoints] = useState(0)
   const [ComputerPoints, setComputerPoints] = useState(0)
+  const [computerPicture, setComputerPicture] = useState("JS-normal")
 
   //useEffect
   useEffect(() => {
@@ -29,22 +32,46 @@ function App() {
       case 'paperrock':
         setHumanPoints(HumanPoints + 1)
         setOutCome("You Win!")
+        setIsActive(!isActive)
+        setComputerPicture("JS-sad")
+
+
         break
       case 'paperscissors':
       case 'scissorsrock':
       case 'rockpaper':
         setComputerPoints(ComputerPoints + 1)
-        setOutCome('You lose')
+        setOutCome('John wins')
+        setComputerPicture("JS-happy")
         break
       case 'scissorsscissors':
       case 'rockrock':
       case 'paperpaper':
         setOutCome('It\'s a tie')
+        setComputerPicture("JS-normal")
         break
 
     }
 
   }, [humanChoice, computerChoice])
+
+
+  //jump 
+  const jumpIfWin = (outCome: string) => {
+    const x: any = { y: [50, 0, 50, 0, 50] }
+
+    if (outCome === "You Win!") return x
+    return ""
+
+  }
+  const jumpHeWins = (outCome: string) => {
+    const x: any = { y: [50, 0, 50, 0, 50] }
+
+    if (outCome === "John wins") return x
+    return ""
+
+  }
+
 
 
   //Computer
@@ -61,15 +88,35 @@ function App() {
 
 
   return (
-    <q.div fccc className="App" gap={"300px"} ma="70px" po="relative">
-      <q.div co={"white"} foSi={"40px"} ma="40px 0 25px 0 ">{outCome}</q.div>
-      <q.div frcc gap="300px">
+    <q.div fccc className="App" gap={"10%"} >
+      <q.div w100 frcc co={"white"} foSi={"40px"} >{outCome}</q.div>
+      <q.div frcc fsb wi={"80%"} >
+        <q.div >
+          <motion.div
+            initial={{ y: 0 }}
+            animate={jumpHeWins(outCome)}
+            transition={{ duration: 0.5 }}
+          >
+            <Computer ComputerPicture={computerPicture} ComputerChoice={computerChoice} ComputerScore={ComputerPoints} />
+          </motion.div>
+        </q.div>
+        <q.div>
+          <motion.div
+            initial={{ y: 0 }}
+            animate={jumpIfWin(outCome)}
+            transition={{ duration: 0.5 }}
 
-        <Computer ComputerChoice={computerChoice} ComputerScore={ComputerPoints} />
-        <Human HumanChoice={humanChoice} HumanScore={HumanPoints} />
+          >
+            <Human HumanChoice={humanChoice} HumanScore={HumanPoints} />
+
+
+          </motion.div>
+        </q.div>
+
       </q.div>
-      <q.div className="buttons" frcc gap={"40px"} po="absolute" >
-        {options.map((choice, index) => <button className="buttons2" key={index} onClick={() => click(choice)}> {choice}</button>)}
+      <q.div className="buttons" frcr wi={"90%"} gap={"40px"}>
+        {options.map((choice, index) =>
+          <q.div className="buttons2" key={index} onClick={() => click(choice)}> {choice}</q.div>)}
       </q.div>
     </q.div>
   );

@@ -8,8 +8,8 @@ interface HumanProps {
 
 const Human = (props: HumanProps) => {
     return (<React.Fragment>
-        <q.div className="human-background" co={"white"} fccc baCo={"green"} he="300px" wi={"350px"} boRa="50%" gap={"100px"} po="relative">
-            <q.div po={"absolute"} he="700px" > Score: {props.HumanScore}</q.div>
+        <q.div className="human-background" co={"white"} fccc he="300px" wi={"300px"} boRa="50%" gap={"100px"} po="relative">
+            <q.div po={"absolute"} top="-40%"  > Score: {props.HumanScore}</q.div>
             <q.div foSi={"50px"}>{props.HumanChoice}</q.div>
             <q.div foSi={"20px"}>You</q.div>
         </q.div>

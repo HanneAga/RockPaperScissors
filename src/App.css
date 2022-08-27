@@ -1,17 +1,24 @@
-body {
-  background: rgb(12, 41, 74);
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .App {
   display: flex;
+  height: 100vh;
+  background-color: rgba(18, 25, 77, 0.71);
 
 }
 
 .buttons2 {
   height: 50px;
   width: 120px;
-  border-radius: 10px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
 }
 
@@ -19,6 +26,7 @@ body {
   left: 56%;
   top: 110%;
   height: 50px;
+
 
 }
 
@@ -28,7 +36,44 @@ body {
 
 }
 
-.computer-background {
-  background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
-  border: 30px solid rgba(148, 187, 233, 1);
+.JS-sad {
+  background-image: url("John-sad.png");
+  background-repeat: no-repeat;
+  object-fit: cover;
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  border: 30px solid rgb(25, 196, 205);
+  background-position: center;
+  background-size: cover;
+
+
+
+}
+
+.JS-happy {
+  background-image: url("John-happy2.png");
+  object-fit: cover;
+  background-repeat: no-repeat;
+
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  border: 30px solid rgb(25, 196, 205);
+  background-position: center;
+  background-size: cover;
+}
+
+.JS-normal {
+  background-image: url("John-normal.png");
+  object-fit: cover;
+  background-repeat: no-repeat;
+
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  border: 30px solid rgb(25, 196, 205);
+  background-position: center;
+  background-size: cover;
+
 }
